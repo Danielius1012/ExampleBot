@@ -5,7 +5,6 @@ using System.Web.Http;
 using Microsoft.Bot.Connector;
 using Microsoft.Bot.Connector.Utilities;
 using Microsoft.Bot.Builder.Dialogs;
-using WeatherBot.Controllers;
 
 namespace WeatherBot
 {
@@ -20,8 +19,11 @@ namespace WeatherBot
         {
             if (message.Type == "Message")
             {
+                // create a reply message   
+                Message replyMessage = message.CreateReplyMessage($"You said: {message.Text}");
+
                 // return our reply to the user
-                return await Conversation.SendAsync(message, () => new WeatherDialog());
+                return replyMessage;
             }
             else
             {
