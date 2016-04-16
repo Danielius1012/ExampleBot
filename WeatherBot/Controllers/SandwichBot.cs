@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Microsoft.Bot.Builder.Dialogs;
+using System.Threading.Tasks;
 
 namespace WeatherBot.Controllers
 {
@@ -34,13 +36,27 @@ namespace WeatherBot.Controllers
         public BreadOptions? Bread;
         public CheeseOptions? Cheese;
         public List<ToppingOptions> Toppings;
-        public List<SauceOptions> Sauce;
+        public List<SauceOptions> Sauces;
 
         public static IForm<SandwichBot> BuildForm()
         {
             return new FormBuilder<SandwichBot>()
                     .Message("Welcome to the simple sandwich order bot!")
+                    //.Field(nameof(SandwichBot.Sandwich))
+                    //.Field(nameof(SandwichBot.Length))
+                    //.Field(nameof(SandwichBot.Bread))
+                    //.Field(nameof(SandwichBot.Cheese))
+                    //.Field(nameof(SandwichBot.Toppings))
+                    //.AddRemainingFields()
+                    //.Confirm("Do you want to order your {Length} {Sandwich} on {Bread} {&Bread} with {[{Cheese} {Toppings} {Sauces}]} ?")
+                    //.Message("Thanks for ordering a sandwich!")
+                    //.OnCompletionAsync(processOrder)
                     .Build();
+        }
+
+        private static Task processOrder(IDialogContext context, SandwichBot state)
+        {
+            throw new NotImplementedException();
         }
     };
 }
