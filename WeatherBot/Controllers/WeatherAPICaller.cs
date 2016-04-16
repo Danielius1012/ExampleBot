@@ -6,7 +6,6 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web;
-using WeatherBot.Objects;
 using WeatherBot.Converter;
 
 namespace WeatherBot.Controllers
@@ -42,9 +41,9 @@ namespace WeatherBot.Controllers
                 string responseFromServer = reader.ReadToEnd();
 
                 // Deserialize JSON
-                var infos = JsonConvert.DeserializeObject<OWMCurrentWeather>(responseFromServer);
+                var infos = ""; // JsonConvert.DeserializeObject<OWMCurrentWeather>(responseFromServer);
 
-                string output = ComposeWeatherAnswer(infos);
+                string output = ""; // ComposeWeatherAnswer(infos);
 
                 // Clean up the streams.
                 reader.Close();
@@ -61,14 +60,14 @@ namespace WeatherBot.Controllers
             
         }
 
-        private static string ComposeWeatherAnswer(OWMCurrentWeather infos)
+        private static string ComposeWeatherAnswer()
         {
-            string temperature = TemperatureConverter.KelvinToCelsius(infos.Main.Temperature);
+            // string temperature = TemperatureConverter.KelvinToCelsius(infos.Main.Temperature);
 
             // Keep in mind: &#13;&#10; for new line
-            string weatherInfos = $"The temperature for {infos.Name} is {temperature}°C.";
+            // string weatherInfos = $"The temperature for {infos.Name} is {temperature}°C.";
 
-            return weatherInfos;
+            return "";
         }
     }
 }

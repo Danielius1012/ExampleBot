@@ -35,7 +35,7 @@ namespace WeatherBot.Controllers
             context.Wait(MessageReceived);
         }
 
-        [LuisIntent("weather.getTemperature")]
+        [LuisIntent("CREATED INTENT")]
         public async Task GetTemperature(IDialogContext context, LuisResult result)
         {
             EntityRecommendation location;
