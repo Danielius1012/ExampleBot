@@ -5,6 +5,8 @@ using System.Web.Http;
 using Microsoft.Bot.Connector;
 using Microsoft.Bot.Connector.Utilities;
 using Microsoft.Bot.Builder.Dialogs;
+using Microsoft.Bot.Builder.FormFlow;
+using WeatherBot.Controllers;
 
 namespace WeatherBot
 {
@@ -19,11 +21,7 @@ namespace WeatherBot
         {
             if (message.Type == "Message")
             {
-                // create a reply message   
-                Message replyMessage = message.CreateReplyMessage($"You said: {message.Text}");
-
-                // return our reply to the user
-                return replyMessage;
+                return await Conversation.SendAsync(message, MakeRootDialog);
             }
             else
             {
@@ -61,7 +59,12 @@ namespace WeatherBot
             }
 
             return null;
-        }   
+        }
+
+        internal static IFormDialog<SandwichBot> MakeRootDialog()
+        {
+            return FormDialog.FromForm(SandwichBot.BuildForm);
+        }
     }
     
 }
