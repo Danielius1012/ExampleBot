@@ -101,6 +101,7 @@
   <ItemGroup>
     <Content Include="default.htm" />
     <Content Include="Global.asax" />
+    <Content Include="images\build_logo.png" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -124,7 +125,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="images\" />
     <Folder Include="Objects\" />
   </ItemGroup>
   <PropertyGroup>
