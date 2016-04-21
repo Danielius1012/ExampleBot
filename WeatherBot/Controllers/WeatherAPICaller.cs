@@ -62,12 +62,11 @@ namespace WeatherBot.Controllers
 
         private static string ComposeWeatherAnswer()
         {
-            // string temperature = TemperatureConverter.KelvinToCelsius(infos.Main.Temperature);
+            string temperature = ""; // TemperatureConverter.KelvinToCelsius(infos.Main.Temperature);
 
-            // Keep in mind: &#13;&#10; for new line
             // string weatherInfos = $"The temperature for {infos.Name} is {temperature}°C.";
 
-            return "";
+            return temperature;
         }
     }
 }
