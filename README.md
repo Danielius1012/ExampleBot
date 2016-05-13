@@ -6,3 +6,6 @@ https://channel9.msdn.com/Series/Microsoft-Bot-Framework
 
 ## Blog post with bot example
 http://devblog.azurewebsites.net/microsoft-bot-framework-neue-serie/
+
+## Contact
+t-dahein@microsoft.com
