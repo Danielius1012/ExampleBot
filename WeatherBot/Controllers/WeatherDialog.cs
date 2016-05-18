@@ -13,17 +13,19 @@ GOAL:
 
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Luis;
+using Microsoft.Bot.Builder.Luis.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using WeatherBot.App_Start;
 
 namespace WeatherBot.Controllers
 {
-    [LuisModel("", "")]
+    [LuisModel(CredentialsWeather.LUISModelId, CredentialsWeather.LUISSubscriptionKey)]
     [Serializable]
-    public class WeatherDialog : LuisDialog
+    public class WeatherDialog : LuisDialog<object>
     {
         public const string Entity_Location = "locationName";
 

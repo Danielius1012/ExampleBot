@@ -8,19 +8,18 @@ using System.Threading.Tasks;
 using System.Web;
 using WeatherBot.Objects;
 using WeatherBot.Converter;
+using WeatherBot.App_Start;
 
 namespace WeatherBot.Controllers
 {
     public class WeatherAPICaller
     {
-        private static string API_KEY = "043ef5b645f0dfe2144806aeb37266b6";
-
         public static async Task<string> GetWeatherData(string city)
         {
             
             var urlBase = $"http://api.openweathermap.org/data/2.5/weather?";
 
-            var callURL = $"{urlBase}q={city}&appid={API_KEY}";
+            var callURL = $"{urlBase}q={city}&appid={CredentialsWeather.API_KEY}";
 
             // Call API
             return CallWeatherAPI(callURL);
