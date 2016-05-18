@@ -3,8 +3,6 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Microsoft.Bot.Connector;
-using Microsoft.Bot.Connector.Utilities;
-using Microsoft.Bot.Builder.Dialogs;
 
 namespace WeatherBot
 {
