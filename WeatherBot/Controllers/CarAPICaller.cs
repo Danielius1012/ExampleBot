@@ -7,19 +7,20 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using WeatherBot.Converter;
+using WeatherBot.Objects;
 
 namespace WeatherBot.Controllers
 {
-    public class WeatherAPICaller
+    public class CarAPICaller
     {
-        private static string API_KEY = "043ef5b645f0dfe2144806aeb37266b6";
+        // Sample URL: http://www.carqueryapi.com/api/0.3/?callback=?&cmd=getMakes&year=2000&make=ford
 
-        public static async Task<string> GetWeatherData(string city)
+        public static async Task<string> GetModels(string company, string year)
         {
             
-            var urlBase = $"http://api.openweathermap.org/data/2.5/weather?";
+            var urlBase = $"http://www.carqueryapi.com/api/0.3/?callback=?&cmd=getModels";
 
-            var callURL = $"{urlBase}q={city}&appid={API_KEY}";
+            var callURL = $"{urlBase}&make={company}&year={year}";
 
             // Call API
             return CallWeatherAPI(callURL);
@@ -38,12 +39,15 @@ namespace WeatherBot.Controllers
                 var dataStream = response.GetResponseStream();
 
                 StreamReader reader = new StreamReader(dataStream);
-                string responseFromServer = reader.ReadToEnd();
+                string responseFromServer = reader.ReadToEnd().Substring(3);
+
+                // Remove first 2 and last two elements from response
+                responseFromServer = responseFromServer.Remove(responseFromServer.Length - 2);
 
                 // Deserialize JSON
-                var infos = ""; // JsonConvert.DeserializeObject<OWMCurrentWeather>(responseFromServer);
+                var infos = JsonConvert.DeserializeObject<CarData>(responseFromServer);
 
-                string output = ""; // ComposeWeatherAnswer(infos);
+                string output = ComposeAnswer(infos);
 
                 // Clean up the streams.
                 reader.Close();
@@ -57,16 +61,18 @@ namespace WeatherBot.Controllers
                 var error = e;
                 return "No weather data available.";
             }
-            
         }
 
-        private static string ComposeWeatherAnswer()
+        private static string ComposeAnswer(CarData infos)
         {
-            string temperature = ""; // TemperatureConverter.KelvinToCelsius(infos.Main.Temperature);
+            string cars = "The cars are: ";
 
-            // string weatherInfos = $"The temperature for {infos.Name} is {temperature}°C.";
+            foreach (var car in infos.Models.ToList())
+            {
+                cars += $" **{car.model_make_id} {car.model_name}** , ";
+            }
 
-            return temperature;
+            return cars;
         }
     }
 }

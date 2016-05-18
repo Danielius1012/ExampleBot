@@ -3,7 +3,6 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Microsoft.Bot.Connector;
-using Microsoft.Bot.Connector.Utilities;
 using Microsoft.Bot.Builder.Dialogs;
 using WeatherBot.Controllers;
 
@@ -21,7 +20,7 @@ namespace WeatherBot
             if (message.Type == "Message")
             {
                 // return our reply to the user
-                return await Conversation.SendAsync(message, () => new WeatherDialog());
+                return await Conversation.SendAsync(message, () => new CarDialog());
             }
             else
             {
